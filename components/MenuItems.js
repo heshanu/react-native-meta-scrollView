@@ -1,15 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet, SectionList } from "react-native";
-import {menuItemsToDisplay} from ".././util/menuItemsToDisplay";
+import { menuItemsToDisplay } from ".././util/menuItemsToDisplay";
 
-const Item = ({ name }) => (
+const Item = ({ name, price }) => (
   <View style={menuStyles.innerContainer}>
-    <Text style={menuStyles.itemText}>{name}</Text> {" "}
+    <Text style={menuStyles.itemText}>{name}</Text>
+    <Text style={menuStyles.itemText}>{price}</Text>
   </View>
+);
+
+const Separator = () => <View style={menuStyles.separator} />;
+
+const Footer = () => (
+  <Text style={menuStyles.footerText}>
+    All Rights Reserved by Little Lemon 2022
+  </Text>
 );
 
 const MenuItems = () => {
   const renderItem = ({ item }) => <Item name={item} />;
+
+  const renderSectionHeader = ({ section: { title } }) => (
+    <Text style={menuStyles.sectionHeader}>{title} </Text>
+  );
+
   return (
     <View style={menuStyles.container}>
       <SectionList
@@ -24,18 +38,7 @@ const MenuItems = () => {
   );
 };
 
-const renderSectionHeader = ({ section: { title } }) => (
-  <Text style={menuStyles.sectionHeader}>{title} </Text>
-);
-
-const Separator = () => <View style={menuStyles.separator} />;
-
-const Footer = () => (
-  <Text style={menuStyles.footerText}>
-    All Rights Reserved by Little Lemon 2022
-  </Text>
-);
-
+// Add styles to the component
 const menuStyles = StyleSheet.create({
   container: {
     flex: 0.95,
@@ -67,3 +70,5 @@ const menuStyles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default MenuItems;

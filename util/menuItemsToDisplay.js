@@ -1,4 +1,4 @@
-const menuItemsToDisplay = [
+export const menuItemsToDisplay = [
   {
     title: "Appetizers",
     data: [
