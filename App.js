@@ -10,7 +10,7 @@ export default function App() {
       <LittleLemonHeader />
       <MenuItems />
     </View>
-  );
+  ); 
 }
 
 const styles = StyleSheet.create({
