@@ -19,6 +19,9 @@ const MenuItems = () => {
         data={menuItemsToDisplay}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
+        ItemSeparatorComponent={Seperator}
+        ListHeaderComponent={Header}
+        ListFooterComponent={Footer}
       ></FlatList>
     </View>
   );
@@ -38,6 +41,29 @@ const menuStyles = StyleSheet.create({
     color: "#F4CE14",
     fontSize: 20,
   },
+  seperator: {
+    borderBottomWidth: 1,
+    borderColor: "#EDEFEE",
+  },
+  headerText: {
+    color: "#EDEFEE",
+    fontSize: 40,
+    paddingVertical: 8,
+    flexWrap: "wrap",
+    textAlign: "center",
+  },
+  footerText: {
+    color: "#EDEFEE",
+    fontSize: 20,
+    flexWrap: "wrap",
+  },
 });
+
+/*Set flatList props*/
+const Seperator = () => <View style={menuStyles.seperator} />;
+const Header = () => <Text style={menuStyles.headerText}>View Menu</Text>;
+const Footer = () => (
+  <Text style={menuStyles.footerText}>All rights reserved!</Text>
+);
 
 export default MenuItems;
