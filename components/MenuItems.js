@@ -1,69 +1,69 @@
 import React from "react";
+import { View, Text, StyleSheet, SectionList } from "react-native";
+import {menuItemsToDisplay} from ".././util/menuItemsToDisplay";
 
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import { menuItemsToDisplay } from ".././util/menuItemsToDisplay";
-
-const Item = ({ name, price }) => (
+const Item = ({ name }) => (
   <View style={menuStyles.innerContainer}>
-    <Text style={menuStyles.itemText}>{name}</Text>
-    <Text style={menuStyles.itemText}>{price}</Text>
+    <Text style={menuStyles.itemText}>{name}</Text> {" "}
   </View>
 );
 
 const MenuItems = () => {
-  const renderItem = ({ item }) => <Item name={item.name} price={item.price} />;
-
+  const renderItem = ({ item }) => <Item name={item} />;
   return (
     <View style={menuStyles.container}>
-      <FlatList
-        data={menuItemsToDisplay}
-        keyExtractor={(item) => item.id}
+      <SectionList
+        keyExtractor={(item, index) => item + index}
+        sections={menuItemsToDisplay}
         renderItem={renderItem}
-        ItemSeparatorComponent={Seperator}
-        ListHeaderComponent={Header}
+        renderSectionHeader={renderSectionHeader}
         ListFooterComponent={Footer}
-      ></FlatList>
+        ItemSeparatorComponent={Separator}
+      ></SectionList>
     </View>
   );
 };
 
+const renderSectionHeader = ({ section: { title } }) => (
+  <Text style={menuStyles.sectionHeader}>{title} </Text>
+);
+
+const Separator = () => <View style={menuStyles.separator} />;
+
+const Footer = () => (
+  <Text style={menuStyles.footerText}>
+    All Rights Reserved by Little Lemon 2022
+  </Text>
+);
+
 const menuStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.95,
   },
   innerContainer: {
     paddingHorizontal: 40,
     paddingVertical: 20,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    backgroundColor: "#333333",
+  },
+  sectionHeader: {
+    backgroundColor: "#fbdabb",
+    color: "#333333",
+    fontSize: 34,
+    flexWrap: "wrap",
+    textAlign: "center",
   },
   itemText: {
     color: "#F4CE14",
-    fontSize: 20,
+    fontSize: 32,
   },
-  seperator: {
+  separator: {
     borderBottomWidth: 1,
     borderColor: "#EDEFEE",
-  },
-  headerText: {
-    color: "#EDEFEE",
-    fontSize: 40,
-    paddingVertical: 8,
-    flexWrap: "wrap",
-    textAlign: "center",
   },
   footerText: {
     color: "#EDEFEE",
     fontSize: 20,
     flexWrap: "wrap",
+    textAlign: "center",
   },
 });
-
-/*Set flatList props*/
-const Seperator = () => <View style={menuStyles.seperator} />;
-const Header = () => <Text style={menuStyles.headerText}>View Menu</Text>;
-const Footer = () => (
-  <Text style={menuStyles.footerText}>All rights reserved!</Text>
-);
-
-export default MenuItems;
