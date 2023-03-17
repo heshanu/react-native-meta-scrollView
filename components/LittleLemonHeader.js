@@ -1,5 +1,5 @@
 import { View, Text } from 'react-native';
-
+import { menuItemsToDisplay } from '../utils/menuItemsToDisplay';
 export default function LittleLemonHeader() {
   return (
     <View style={{ backgroundColor: '#F4CE14' }}>
