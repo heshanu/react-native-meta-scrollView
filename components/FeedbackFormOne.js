@@ -5,7 +5,9 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
+  Pressable,
 } from "react-native";
+import { View } from "react-native-web";
 
 const FeedbackFormOne = () => {
   // declare the variables
@@ -20,6 +22,15 @@ const FeedbackFormOne = () => {
       style={styles.container}
     >
       <ScrollView>
+        <View>
+          <Pressable
+            onPress={() => {
+              console.log("pressed");
+            }}
+          >
+            <Text style={styles.headingSection}>IM pressurable</Text>
+          </Pressable>
+        </View>
         <Text style={styles.headingSection}>
                   How was your visit to Little Lemon?      {" "}
         </Text>
@@ -36,8 +47,12 @@ const FeedbackFormOne = () => {
           value={firstName}
           onChangeText={onChangeFirstName}
           placeholder={"First Name"}
-          onBlur={() => {console.log("onBlur")}}
-          onFocus={() => {console.log("onFocus")}}
+          onBlur={() => {
+            console.log("onBlur");
+          }}
+          onFocus={() => {
+            console.log("onFocus");
+          }}
         />
              {" "}
         <TextInput

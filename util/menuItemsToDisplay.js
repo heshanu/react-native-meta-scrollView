@@ -41,3 +41,7 @@ export const menuItemsToDisplay = [
     ],
   },
 ];
+
+export default {
+  menuItemsToDisplay,
+};
